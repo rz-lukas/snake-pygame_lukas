@@ -3,16 +3,15 @@ Snake Eater
 Made with PyGame
 """
 
+from tkinter import Button
 import pygame, sys, time, random
 
-
 # Difficulty settings
-# Easy      ->  10
-# Medium    ->  25
-# Hard      ->  40
-# Harder    ->  60
-# Impossible->  120
-difficulty = 25
+# Leicht     ->  10
+# Mittel     ->  25
+# Schwer     ->  40
+# Legendär   ->  80
+difficulty = 25 
 
 # Window size
 frame_size_x = 720
@@ -59,6 +58,28 @@ change_to = direction
 score = 0
 
 
+# # Game Over
+# def game_over():
+#     my_font = pygame.font.SysFont('times new roman', 90)
+#     game_over_surface = my_font.render('YOU DIED', True, red)
+#     game_over_rect = game_over_surface.get_rect()
+#     game_over_rect.midtop = (frame_size_x/2, frame_size_y/4)
+#     game_window.fill(black)
+#     game_window.blit(game_over_surface, game_over_rect)
+#     show_score(0, red, 'times', 20)
+
+#     # Create a button object
+#     button = game_over_surface.Button(game_over_surface, x=307, y=300, width=100, height=50, text="Reset")
+
+# 	# Add the button to the display
+#     game_over_surface.add(button)
+
+#     if button.is_pressed:
+#         game_window
+#     else:
+#         game_over
+
+
 # Game Over
 def game_over():
     my_font = pygame.font.SysFont('times new roman', 90)
@@ -68,10 +89,48 @@ def game_over():
     game_window.fill(black)
     game_window.blit(game_over_surface, game_over_rect)
     show_score(0, red, 'times', 20)
-    pygame.display.flip()
-    time.sleep(3)
+    
+    time.sleep(5)
     pygame.quit()
     sys.exit()
+
+    
+    
+    
+    # Reset game function
+def reset_game():
+    global snake_pos, snake_body, food_pos, food_spawn, direction, change_to, score
+
+    snake_pos = [100, 50]
+    snake_body = [[100, 50], [90, 50], [80, 50]]
+    food_pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
+    food_spawn = True
+    direction = 'RIGHT'
+    change_to = direction
+    score = 0
+    
+    
+
+    # button_color = (255, 0, 0)
+    # button_font = pygame.font.SysFont('times new roman', 24)
+    # button_text = 'Reset'
+    # button_rect = pygame.Rect(307, 300, 100, 50)
+    # #button = pygame.draw.rect(game_window, button_color, button_rect)
+    # button_text_surface = button_font.render(button_text, True, button_color)
+    # button_text_rect = button_text_surface.get_rect()
+    # button_text_rect.centerx = button_rect.centerx
+    # button_text_rect.centery = button_rect.centery
+    # game_window.blit(button_text_surface, button_text_rect)
+    
+   
+    
+    
+    #pygame.display.flip()
+    #time.sleep(3)
+    #pygame.quit()
+    #sys.exit()
+    
+
 
 
 # Score
@@ -84,13 +143,14 @@ def show_score(choice, color, font, size):
     else:
         score_rect.midtop = (frame_size_x/2, frame_size_y/1.25)
     game_window.blit(score_surface, score_rect)
-    # pygame.display.flip()
+    pygame.display.flip()
 
 
 # Main logic
-while True:
+while True:    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            time.sleep(10)
             pygame.quit()
             sys.exit()
         # Whenever a key is pressed down
@@ -168,3 +228,14 @@ while True:
     pygame.display.update()
     # Refresh rate
     fps_controller.tick(difficulty)
+    
+   
+
+
+
+    
+
+
+
+
+

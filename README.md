@@ -1,3 +1,5 @@
+original project: https://github.com/rajatdiptabiswas/snake-pygame/tree/master
+
 # Snake Eater
 A snake game written in Python using the Pygame library.
 
