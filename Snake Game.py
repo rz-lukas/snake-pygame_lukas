@@ -11,7 +11,7 @@ import pygame, sys, time, random
 # Mittel     ->  25
 # Schwer     ->  40
 # Legendär   ->  80
-difficulty = 25 
+difficulty = 25
 
 # Window size
 frame_size_x = 720
@@ -95,10 +95,16 @@ def game_over():
     game_window.blit(reset_surface, reset_rect)
     show_score(0, red, 'times', 20)
     
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            time.sleep(5)
+            pygame.quit()
+            sys.exit()
+        if event.type == pygame.MOUSEBUTTONDOWN:
+                reset_game()
+                
     
-    time.sleep(5)
-    pygame.quit()
-    sys.exit()
+    
 
     
     
