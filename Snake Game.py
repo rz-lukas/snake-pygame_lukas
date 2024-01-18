@@ -88,7 +88,13 @@ def game_over():
     game_over_rect.midtop = (frame_size_x/2, frame_size_y/4)
     game_window.fill(black)
     game_window.blit(game_over_surface, game_over_rect)
+    
+    reset_surface = my_font.render('Reset', True, red)
+    reset_rect = reset_surface.get_rect()
+    reset_rect.midtop = (frame_size_x/2, frame_size_y/2)
+    game_window.blit(reset_surface, reset_rect)
     show_score(0, red, 'times', 20)
+    
     
     time.sleep(5)
     pygame.quit()
